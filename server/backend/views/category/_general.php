@@ -1,0 +1,44 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: rostyslav
+ * Date: 1/21/19
+ * Time: 3:19 PM
+ */
+
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+?>
+
+
+<?php $form = ActiveForm::begin(); ?>
+
+<?= $form->field($model, 'title')->textInput()?>
+
+<?= $form->field($model, 'sort_order')->textInput()?>
+
+<?= $form->field($model, 'parent_id')->dropDownList(ArrayHelper::map($categories, 'category_id', 'title'),
+    [
+
+    ])->label('') ?>
+
+
+<td><?= Html::encode($category['status']) == 1 ?   'Активно' :  'Выключено'?></td>
+
+<?= $form->field($model, 'status')->dropDownList([
+    '1' => 'Активно',
+    '0' => 'Отключено',
+
+],[
+])->label('') ?>
+
+
+
+
+
+<div class="form-group">
+    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+</div>
+
+<?php ActiveForm::end(); ?>
